@@ -1,0 +1,58 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LOGIN</title>
+    <link href="{% static 'style/loginstyle.css' %}" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %}">
+  </head>
+  <body>
+    <!-- Body of Form starts -->
+	<h2 style="text-align:center;">LOGIN</h2>
+  	<div class="container">
+      <form action="login" method="post" autocomplete="on">
+		  {% csrf_token %}
+		  <div class="box">
+          <label for="UserName" class="fl fontLabel"> Username: </label>
+<!--    			<div class="new iconBox">-->
+<!--            <i class="fa fa-user" aria-hidden="true"></i>-->
+<!--          </div>-->
+    			<div class="fr">
+    					<input type="text" name="username" placeholder="Enter Username"
+              class="textBox" autofocus="on" required>
+    			</div>
+    			<div class="clr"></div>
+    		</div>
+
+    		<!---Password------>
+    		<div class="box">
+          <label for="password1" class="fl fontLabel"> Password </label>
+<!--    			<div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>-->
+    			<div class="fr">
+    					<input type="Password" required name="password1" placeholder="Enter Password" class="textBox">
+    			</div>
+    			<div class="clr"></div>
+    		</div>
+
+
+    		<!---Password---->
+
+
+    		<!--Terms and Conditions------>
+
+
+
+    		<!---Submit Button------>
+    		<div class="box" style="background: #2d3e3f">
+    				<input type="Submit" name="Submit" class="submit" value="Login">
+    		</div>
+		  <div class="box" style="text-align:center">
+			  <a href="/register" class="submit"> Register </a>
+		  </div>
+    		<!---Submit Button----->
+      </form>
+  </div>
+  <!--Body of Form ends--->
+
+  </body>
+</html>

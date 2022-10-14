@@ -1,0 +1,130 @@
+{% load static %}
+<!-- Button trigger modal -->
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'style/bootstrap4/bootstrap.min.css' %}">
+<script>
+var deptByCategory = {
+    A: ["Maths", "Physics", "Chemistry", "Botany", "Zoology"],
+    B: ["Maths", "Physics", "Chemistry", "Computer"],
+    C: ["Accountancy", "Business Studies", "Economics", "Mathematics", "English"],
+    D: ["Indian Economy", "Accountancy", "Mathematics", "English", "Liberalisation"],
+    E: ["Economics", "Psychology", "History", "Political Science", "Geography", "Law"]
+
+}
+
+    function changecat(value) {
+        if (value.length == 0) document.getElementById("category").innerHTML = "<option></option>";
+        else {
+            var catOptions = "";
+            for (categoryId in deptByCategory[value]) {
+                catOptions += "<option>" + deptByCategory[value][categoryId] + "</option>";
+            }
+            document.getElementById("course").innerHTML = catOptions;
+        }
+    }
+</script>
+</head>
+<body>
+<center>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Start Purchase
+</button>
+</center>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-6">
+            <form method="POST" class="p-3 shadow">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Name:</label><br>
+                    <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Date of birth:</label><br>
+                    <input type="date" class="form-control" name="dob" placeholder="Enter your Date of Birth">
+                </div>
+                <div class="form-group">
+                    <label>Age:</label><br>
+                    <input type="number" class="form-control" name="age" placeholder="Enter Your age">
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label><br>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label><br>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label><br>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                </div>
+                <div class="form-group">
+                    <label>Phone No:</label><br>
+                    <input type="number" class="form-control" name="phno" placeholder="Enter Your Phone No">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label><br>
+                    <input type="email" class="form-control" name="mail" placeholder="Enter Your Email">
+                </div>
+                <div class="form-group">
+                    <label>Address:</label><br>
+                    <textarea  name="address" rows="5" cols="33"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Department:</label><br>
+                    <select name="department" id="department" onChange="changecat(this.value);">
+                        <option value="" disabled selected>Select</option>
+                        <option value="A">Biology Science</option>
+                        <option value="B">Computer Science</option>
+                        <option value="C">Commerce</option>
+                        <option value="D">Economics</option>
+                        <option value="E">Humanities</option>
+                    </select><br>
+                    <label>Course:</label><br>
+                    <select name="course" id="course">
+                        <option value="" disabled selected>Select</option>
+                    </select><br>
+                </div>
+                <div class="form-group">
+                    <label >Purpose:</label><br>
+                    <select id="purpose" name="purpose">
+                        <option value="enquiry">Enquiry</option>
+                        <option value="place_order">Place Order</option>
+                        <option value="return">Return</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label >Materials:</label><br>
+                    <input type="checkbox" id="material1" name="material1" value="True">
+                    <label>Pen</label><br>
+                    <input type="checkbox" id="material2" name="material2" value="True">
+                    <label > Paper</label><br>
+                    <input type="checkbox" id="material3" name="material3" value="True">
+                    <label>Book</label><br>
+                    <input type="checkbox" id="material4" name="material4" value="True">
+                    <label>Pencil</label><br>
+                    <input type="checkbox" id="material5" name="material5" value="True">
+                    <label>Eraser</label><br>
+<!--           <div class="form-group">-->
+                </div>
+                <input type="submit" class="btn btn-success">
+                <button type="button" class="btn btn-primary"><a href="/logout" style="color:white">Logout</a></button>
+<!--           </div>-->
+            </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
